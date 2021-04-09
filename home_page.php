@@ -21,12 +21,12 @@
 <body>
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="index.html" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
+        <a href="home_page.php" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-            <a href="index.html" class="w3-bar-item w3-button" >Home</a>
-            <a href="index2.html" class="w3-bar-item w3-button">Registration</a>
-            <a href="animation.html" class="w3-bar-item w3-button">Animations</a>
+            <a href="home_page.php" class="w3-bar-item w3-button" >Home</a>
+            <a href="registration.php" class="w3-bar-item w3-button">Registration</a>
+            <a href="animation_snow.php" class="w3-bar-item w3-button">Animations</a>
         </div>
     </div>
 </div>
@@ -42,18 +42,18 @@
 <div class="wrapper" >
     <div id="menubar">
         <div id="menu_list">
-            <a href="index.html" class="w3-bar-item w3-button menuitem menuitem_1" >Home</a><br>
-            <a href="index2.html" class="w3-bar-item w3-button menuitem menuitem_1" >Registration</a><br>
-            <a href="animation.html" class="w3-bar-item w3-button menuitem menuitem_1" >Animations</a><br>
+            <a href="home_page.php" class="w3-bar-item w3-button menuitem menuitem_1" >Home</a><br>
+            <a href="registration.php" class="w3-bar-item w3-button menuitem menuitem_1" >Registration</a><br>
+            <a href="animation_snow.php" class="w3-bar-item w3-button menuitem menuitem_1" >Animations</a><br>
         </div>
     </div>
 
-<!-- Page Content -->
+    <!-- Page Content -->
     <div id="main">
-            <br>
-            <h1 style="text-align: center">Snow Station Ski Resort</h1>
-            <br>
-            <p style="position: relative;  text-align: justify; text-justify: inter-word; font-size: 25px ">
+        <br>
+        <h1 style="text-align: center">Snow Station Ski Resort</h1>
+        <br>
+        <p style="position: relative;  text-align: justify; text-justify: inter-word; font-size: 25px ">
             Snow station is a ski resort in Missouri, boasting 17 tracks on about 65 acres of skiable terrain and 310 feet of vertical slopes.
             About 30 percent of the runs are beginner-friendly, 60 percent are intermediate, and the remaining 10 percent advanced.
             The resort also has a terrain park for professionals. Nine lifts (including five chair lifts),
@@ -64,7 +64,7 @@
             Snow Station offers ski and snowboard lessons for all ages and abilities, equipment rental, and a ski lodge featuring a bar,
             shop, and cafeteria. There are day lockers and vending machines available, too.[1]
             <br>
-            </p>
+        </p>
     </div>
     <div id="sidebar">
         <h3>Advertisement</h3>
@@ -185,3 +185,4 @@
 
 </body>
 </html>
+

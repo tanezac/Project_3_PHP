@@ -150,12 +150,12 @@
 
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="index.html" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
+        <a href="home_page.php" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-            <a href="index.html" class="w3-bar-item w3-button" >Home</a>
-            <a href="index2.html" class="w3-bar-item w3-button">Registration</a>
-            <a href="animation.html" class="w3-bar-item w3-button">Animations</a>
+            <a href="home_page.php" class="w3-bar-item w3-button" >Home</a>
+            <a href="registration.php" class="w3-bar-item w3-button">Registration</a>
+            <a href="animation_snow.php" class="w3-bar-item w3-button">Animations</a>
         </div>
     </div>
 </div>
@@ -169,9 +169,9 @@
 <div class="wrapper" >
     <div id="menubar">
         <div id="menu_list">
-            <a href="index.html" class="w3-bar-item w3-button menuitem menuitem_1" >Home</a><br>
-            <a href="index2.html" class="w3-bar-item w3-button menuitem menuitem_1" >Registration</a><br>
-            <a href="animation.html" class="w3-bar-item w3-button menuitem menuitem_1" >Animations</a>
+            <a href="home_page.php" class="w3-bar-item w3-button menuitem menuitem_1" >Home</a><br>
+            <a href="registration.php" class="w3-bar-item w3-button menuitem menuitem_1" >Registration</a><br>
+            <a href="animation_snow.php" class="w3-bar-item w3-button menuitem menuitem_1" >Animations</a>
         </div>
     </div>
 
