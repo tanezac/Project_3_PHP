@@ -17,4 +17,7 @@
     color: red;
     font-weight: bold;
     text-align: center;
+    position: relative;
+    left: 6px;
+
 }

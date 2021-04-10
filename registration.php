@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <?php define("title", "Registration"); ?>
+    <?php const title = "Registration"; ?>
     <title><?php echo title; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +22,28 @@
 </head>
 <body>
 <h1><?php echo title; ?></h1>
+<br/>
+<?php require_once('check_form.php');
+?>
+<script>
+    function myFunction() {
+        const x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    function myFunction1() {
+        const x = document.getElementById("repeatPass");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+</script>
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
         <a href="home_page.php" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
@@ -40,9 +62,7 @@
     </div>
 </header>
 
-<?php
-    include './PHP/check_form.php';
-?>
+
 
 
 <!--Button Left-->
@@ -58,50 +78,67 @@
 <div id="main1">
     <h1 style="text-align: center">Register Now</h1>
     <p><span class="error">* Required Field </span> </p>
-    <form  method="post" novalidate
-           action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+    <form  method="post" novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
         <div class="col-xs-65 col-sm-90 col-md-90 col-lg-90 text-left">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="col-xs-12 col-sm-12 col-md-6" >
                     <div class="form-group">
-                        <label for="username">User Name:</label>
+                        <label for="username">User Name:  <span class="error">*</span></label>
                         <input id="username" name="username" class="form-control" type="text"
-                               placeholder="Enter User Name" required="required"
+                               placeholder="Enter User Name"
                                value="<?php echo $username; ?>"/>
-                        <span class="error"><?php echo $usernameERR;?></span>
+                        <span class="error"><?php echo $usernameERR; ?></span>
 
                     </div>
                     <div class="form-group">
-                        <label for="password">Password:</label>
+                        <label for="password">Password:  <span class="error">*</span></label>
                         <input id="password" name="password" class="form-control" type="password"
-                               placeholder="Enter Password" value="" required="required"/>
+                               placeholder="Enter Password" value="<?php echo $password; ?>"/>
+                        <label>
+                            <input type="checkbox" onclick="myFunction()">
+                        </label> Show Password
+                        <br/>
+                        <span class="error"><?php echo $passwordERR; ?></span>
+
                     </div>
                     <div class="form-group">
-                        <label for="repeat_password">Repeat Password:</label>
-                        <input id="repeat_password" name="repeat password" class="form-control" type="password"
-                               placeholder="Repeat Password" value="" required="required"/>
+                        <label for="repeatPass">Repeat Password:  <span class="error">*</span></label>
+                        <input id="repeatPass" name="repeatPass" class="form-control" type="password"
+                               placeholder="Repeat Password" value="<?php echo $repeatPass; ?>" />
+                        <label>
+                            <input type="checkbox" onclick="myFunction1()">
+                        </label> Show Password
+                        <br/>
+                        <span class="error"><?php echo $repeatPassERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">First Name:</label>
-                        <input id="first_name" name="first name" class="form-control" type="text"
-                               placeholder="Enter First Name" required="required"/>
+                        <label for="firstname">First Name:  <span class="error">*</span></label>
+                        <input id="firstname" name="firstname" class="form-control" type="text"
+                               placeholder="Enter First Name"
+                               value="<?php echo $firstname; ?>"
+                        />
+                        <span class="error"><?php echo $firstnameERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="last_name">Last Name:</label>
-                        <input id="last_name" name="last name" class="form-control" type="text"
-                               placeholder="Enter Last Name" required="required"/>
+                        <label for="lastname">Last Name:  <span class="error">*</span></label>
+                        <input id="lastname" name="lastname" class="form-control" type="text"
+                               placeholder="Enter Last Name"
+                               value="<?php echo $lastname; ?>"
+                        />
+                        <span class="error"><?php echo $lastnameERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="birthDay">Date of Birth:</label><br/>
-                        <input id="birthDay" type="date" name="birthDay" class="form-control"
-                        placeholder="Enter Date Of Birth" required="required"/>
+                        <label for="birthday">Date of Birth:  <span class="error">*</span></label><br/>
+                        <input id="birthday" type="date" name="birthday" class="form-control"
+                        placeholder="Enter Date Of Birth" />
+                        <span class="error"><?php echo $birthdayERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label>Gender:</label><br>
+                        <label>Gender:  <span class="error">*</span></label><br>
                         <input type="radio"
                                name="gender" id="maleGender"
                                <?php if($gender == "male"){echo "Checked";} ?>
@@ -117,17 +154,21 @@
                                 <?php if($gender == "other"){echo "Checked";} ?>
                                value="other" />
                         <label for="otherGender">Other</label>
+                        <span class="error"> <?php echo $genderERR;?></span>
                     </div>
                     <div class="form-group">
-                        <label>Marital Status:</label><br>
+                        <label>Marital Status:  <span class="error">*</span></label><br>
                         <input type="radio"
                                name="status" id="yes"
+                            <?php if($marital == "yes"){echo "Checked";} ?>
                                value="yes" />
                         <label for="yes">Yes</label>
                         <input type="radio"
                                name="status" id="no"
+                            <?php if($marital == "no"){echo "Checked";} ?>
                                value="no" />
                         <label for="no">No</label>
+                        <span class="error"> <?php echo $maritalERR;?></span>
 
                     </div>
 
@@ -135,20 +176,27 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label for="address1">Address Line 1:</label>
+                        <label for="address1">Address Line 1:  <span class="error">*</span></label>
                         <input id="address1" name="address1" class="form-control" type="text"
-                               placeholder="Enter Address" required="required"/>
+                               placeholder="Enter Address"
+                               value="<?php echo $address1; ?>"
+                        />
+                        <span class="error"><?php echo $address1ERR; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="address2">Address Line 2:</label>
                         <input id="address2" name="address2" class="form-control" type="text"
-                               placeholder="Enter Address"/>
+                               placeholder="Enter Address"
+                               value="<?php echo $address2; ?>"/>
+                        <span class="error"><?php echo $address2ERR; ?></span>
                     </div>
 
                     <div class="form-group">
                         <label for="city">City:</label>
                         <input id="city" name="city" class="form-control" type="text"
-                               placeholder="Enter City" />
+                               placeholder="Enter City"
+                               value="<?php echo $city; ?>"/>
+                        <span class="error"><?php echo $cityERR; ?></span>
                     </div>
                     <div class="form-group">
                     <label for="state">State:</label>
@@ -179,7 +227,9 @@
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input id="email" name="email" class="form-control" type="email"
-                               placeholder="Enter Email" required="required"/>
+                               placeholder="Enter Email"
+                               value="<?php echo $email; ?>"/>
+                        <span class="error"><?php echo $emailERR; ?></span>
                     </div>
 
                     <input type="submit" class="btn btn-success" value="Submit Button"/>
@@ -188,7 +238,6 @@
             </div>
         </div>
     </form>
-
 
 
 </div>
@@ -240,8 +289,6 @@
         </div>
     </div>
 </footer>
-
-
 
 </body>
 </html>
