@@ -5,6 +5,21 @@ $username =  $firstname = $lastname = $password = $repeatPass= $gender= $marital
 $birthday = $birthdayERR="";
 $state = $stateERR = "";
 $isValid = false;
+
+
+if(isset($_POST["create"])){
+
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+}
+
+
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isValid = true;
     $username = test_input($_POST["username"]);

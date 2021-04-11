@@ -23,27 +23,6 @@
 <body>
 <h1><?php echo title; ?></h1>
 <br/>
-<?php include 'check_form.php'; ?>
-
-<script>
-    function myFunction() {
-        const x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-    function myFunction1() {
-        const x = document.getElementById("repeatPass");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-
-</script>
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
         <a href="home_page.php" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>
