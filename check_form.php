@@ -3,6 +3,7 @@
 $usernameERR =  $firstnameERR = $lastnameERR = $passwordERR = $repeatPassERR =$genderERR= $maritalERR= $address1ERR = $address2ERR = $cityERR  =$zipcodeERR  =$phoneERR  = $emailERR = "";
 $username =  $firstname = $lastname = $password = $repeatPass= $gender= $marital= $address1= $address2= $city =$zipcode =$phone = $email = "";
 $birthday = $birthdayERR="";
+$state = $stateERR = "";
 $isValid = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isValid = true;
@@ -39,25 +40,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $repeatPass = test_input($_POST["repeatPass"]);
             if (strlen($_POST["password"]) <= 8) {
                 $passwordERR = "Your Password Must Contain At Least 8 Characters!";
+                $isValid=false;
             } elseif (!preg_match("#[0-9]+#", $password)) {
                 $passwordERR = "Your Password Must Contain At Least 1 Number!";
+                $isValid=false;
             } elseif (!preg_match("#[A-Z]+#", $password)) {
                 $passwordERR = "Your Password Must Contain At Least 1 Capital Letter!";
+                $isValid=false;
             } elseif (!preg_match("#[a-z]+#", $password)) {
                 $passwordERR = "Your Password Must Contain At Least 1 Lowercase Letter!";
+                $isValid=false;
             } elseif (!preg_match("#[\W]+#", $password)) {
                 $passwordERR = "Your Password Must Contain At Least 1 Special Character!";
+                $isValid=false;
             } elseif (strcmp($password, $repeatPass) !== 0) {
                 $passwordERR = "Passwords must match!";
+                $isValid=false;
             }
         }
-        elseif(empty($_POST["repeatPass"]) && empty($_POST["password"])) {
-            $repeatPassERR = "Please Check You've Entered Or Confirmed Your Password!";
+        elseif(empty($_POST["password"])) {
             $passwordERR = "Password is required!";
+            $isValid=false;
+        }
+        elseif(empty($_POST["repeatPass"]) && !empty($_POST["password"])){
+            $repeatPassERR = "Please Check You've Entered Or Confirmed Your Password!";
+            $isValid=false;
         }
         else
         {
             $passwordERR=$repeatPass="";
+            $isValid=true;
         }
 
 //First Name
@@ -108,17 +120,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 //birthday
-    if (isset($_POST["birthday"])) {
-        $birthday= test_input($_POST["birthday"]);
-        if (empty($_POST["birthday"])) {
-            $birthday = "Birthday is required!";
+    $birthday= test_input($_POST["birthday"]);
+    if (empty($_POST["birthday"])) {
+            $birthdayERR = "Birthday is required!";
             $isValid = false;
-        }
     }
-    else {
-        $birthdayERR = "Birthday is required!";
-        $isValid = false;
+    else{
+        $isValid=true;
     }
+
+
 
 
 //gender
@@ -188,26 +199,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+//state
+    $state = test_input($_POST["state"]);
+    if (empty($_POST["state"])) {
+        $stateERR = "State is required!";
+        $isValid = false;
+    }
+    else{
+        $isValid=true;
+    }
 
+//phone
+    function phone_number_format($number) {
 
+        // Allow only Digits, remove all other characters.
+        $number = preg_replace("/[^\d]/","",$number);
 
+        // get number length.
+        $length = strlen($number);
 
+        // if number = 10
+        if($length == 10) {
+            $number = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $number);
+        }
+
+        return $number;
+
+    }
+    $phone = test_input($_POST["phone"]);
+    if (empty($_POST["phone"])) {
+        $phoneERR = "Phone number is required!";
+        $isValid = false;
+    }
+    else{
+        if ( strlen($_POST["phone"])  > 12 ) {
+            $phoneERR= "Max length 12 characters!";
+            $isValid = false;
+        }
+        elseif(preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/', $phone)){
+            $phoneERR="";
+            $isValid=true;
+        }
+        elseif(phone_number_format($phone)){
+            $phoneERR="";
+            $phone=phone_number_format($phone);
+            $isValid=true;
+        }
+        else{
+            $phoneERR="Phone number should be formatted: xxx-xxx-xxxx";
+            $isValid=false;
+        }
+
+    }
+
+//zipcode
+    $zipcode = test_input($_POST["zipcode"]);
+    if (empty($_POST["zipcode"])) {
+        $zipcodeERR = "Zip code is required!";
+        $isValid = false;
+    }
+    else{
+        if ( strlen($_POST["zipcode"])  > 10 || strlen($_POST["zipcode"]) <5 ) {
+                $zipcodeERR= "Max length 10 characters, minimum length 5 digits";
+                $isValid = false;
+        }
+        elseif(preg_match('/^[0-9]{5}([- ]?[0-9]{4})?$/', $zipcode)){
+            $zipcodeERR="";
+            $isValid=true;
+        }
+        else{
+            $zipcodeERR="Zip Code should be formatted: xxxxx or xxxxx-xxxx";
+            $isValid=false;
+        }
+    }
 
 
     //email
     $email = test_input($_POST["email"]);
     if (empty($_POST["email"])) {
         $emailERR = "Email is required!";
+        $isValid=false;
     } else {
 
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailERR = "Invalid email format!";
+            $emailERR = "Invalid email format - x@x.xformat!";
+            $isValid=false;
+        }
+        else{
+            $isValid=true;
         }
     }
-
-
-
 
 
 }

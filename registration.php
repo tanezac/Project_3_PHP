@@ -23,8 +23,8 @@
 <body>
 <h1><?php echo title; ?></h1>
 <br/>
-<?php require_once('check_form.php');
-?>
+<?php include 'check_form.php'; ?>
+
 <script>
     function myFunction() {
         const x = document.getElementById("password");
@@ -133,7 +133,8 @@
                     <div class="form-group">
                         <label for="birthday">Date of Birth:  <span class="error">*</span></label><br/>
                         <input id="birthday" type="date" name="birthday" class="form-control"
-                        placeholder="Enter Date Of Birth" />
+                        placeholder="Enter Date Of Birth"
+                               value="<?php echo $birthday; ?>"/>
                         <span class="error"><?php echo $birthdayERR; ?></span>
                     </div>
 
@@ -141,17 +142,17 @@
                         <label>Gender:  <span class="error">*</span></label><br>
                         <input type="radio"
                                name="gender" id="maleGender"
-                               <?php if($gender == "male"){echo "Checked";} ?>
+                               <?php if (isset($gender) && $gender=="male") echo "checked";?>
                                value="male" />
                         <label for="maleGender">Male</label>
                         <input type="radio"
                                name="gender" id="femaleGender"
-                               <?php if($gender == "female"){echo "Checked";} ?>
+                               <?php if (isset($gender) && $gender=="female") echo "checked";?>
                                value="female" />
                         <label for="femaleGender">Female</label>
                         <input type="radio"
                                name="gender" id="otherGender"
-                                <?php if($gender == "other"){echo "Checked";} ?>
+                               <?php if (isset($gender) && $gender=="other") echo "checked";?>
                                value="other" />
                         <label for="otherGender">Other</label>
                         <span class="error"> <?php echo $genderERR;?></span>
@@ -192,14 +193,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="city">City:</label>
+                        <label for="city">City:  <span class="error">*</span></label>
                         <input id="city" name="city" class="form-control" type="text"
                                placeholder="Enter City"
                                value="<?php echo $city; ?>"/>
                         <span class="error"><?php echo $cityERR; ?></span>
                     </div>
                     <div class="form-group">
-                    <label for="state">State:</label>
+                    <label for="state">State:  <span class="error">*</span></label>
                     <select id="state" name="state" class="form-control">
                         <option value="" selected="selected" hidden="hidden" disabled="disabled">
                             --Please Select--
@@ -210,22 +211,28 @@
                         <option value="QR">Oregon</option>
                         <option value="TX">Texas</option>
                         <option value="LA">Los Angeles</option>
+
                     </select>
+                        <span class="error"><?php echo $stateERR; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="zip">Zip Code:</label>
-                        <input id="zip" name="zip" class="form-control" type="text"
-                               placeholder="Enter Zip Code" required="required"/>
+                        <label for="zipcode">Zip Code:  <span class="error">*</span></label>
+                        <input id="zipcode" name="zipcode" class="form-control" type="text"
+                               placeholder="Enter Zip Code"
+                               value="<?php echo $zipcode; ?>"/>
+                        <span class="error"><?php echo $zipcodeERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number:</label>
+                        <label for="phone">Phone Number:  <span class="error">*</span></label>
                         <input id="phone" name="phone" class="form-control" type="tel"
-                               placeholder="Enter Phone Number" />
+                               placeholder="Enter Phone Number"
+                               value="<?php echo $phone; ?>"/>
+                        <span class="error"><?php echo $phoneERR; ?></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Email:  <span class="error">*</span></label>
                         <input id="email" name="email" class="form-control" type="email"
                                placeholder="Enter Email"
                                value="<?php echo $email; ?>"/>
@@ -239,6 +246,28 @@
         </div>
     </form>
 
+    <?php
+    //var_dump($isValid);
+    if ($isValid) {
+        ?>
+        <form id="hiddenForm" name="hiddenForm"
+              method="POST" action="confirmation.php">
+            <?php
+            foreach($_POST as $key => $value) {
+                ?>
+                <input name="<?php echo $key;?>"
+                       value="<?php echo $value;?>"
+                       type="hidden"/>
+                <?php
+            }
+            ?>
+        </form>
+        <script>
+            document.createElement('form').submit.call(document.getElementById('hiddenForm'));
+        </script>
+        <?php
+    }
+    ?>
 
 </div>
 </div>
