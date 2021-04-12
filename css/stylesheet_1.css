@@ -173,3 +173,9 @@ a:hover {
 .zoom{
     zoom: 200%;
 }
+
+.tableConfirm{
+    position: relative;
+    margin-top: 34px;
+    width: 84%;
+}

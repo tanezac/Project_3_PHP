@@ -266,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phoneERR="";
             $isValid=true;
         }
-        elseif(phone_number_format($phone)){
+        elseif(strlen($_POST["phone"]) ==10){
             $phoneERR="";
             $phone=phone_number_format($phone);
             $isValid=true;
@@ -279,6 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 //zipcode
+
     $zipcode = test_input($_POST["zipcode"]);
     if (empty($_POST["zipcode"])) {
         $zipcodeERR = "Zip code is required!";
@@ -327,7 +328,6 @@ function test_input($data) {
 }
 ?>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 <script>
     function myFunction() {
         const x = document.getElementById("password");
@@ -346,6 +346,8 @@ function test_input($data) {
         }
     }
 </script>
+
+
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card">
         <a href="home_page.php" class="w3-bar-item w3-button"><img style="margin-left:-17px; height:50px;" src="./img/logo.jpg" alt="logo"><b>STA</b> Snow Station</a>

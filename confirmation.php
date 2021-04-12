@@ -55,12 +55,23 @@
     </div>
 
     <div id="main1">
-        <h1 style="text-align: center">Register Now</h1>
+        <h1 style="text-align: center">Confirm Information</h1>
+        <table class="tableConfirm">
         <?php
         foreach($_POST as $key => $value) {
-            echo "<br/>$key : $value<br/>";
+            echo "<tr>";
+            echo "<td>";
+            echo strtoupper($key);
+            echo "</td>";
+            echo "<td>";
+            echo $value;
+            echo "</td>";
+            echo "</tr>";
         }
         ?>
+        </table>
+        <br/>
+        <br/>
     </div>
 </div>
 
